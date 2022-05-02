@@ -66,3 +66,8 @@ body{
     font-size: 203%;
     font-weight: bold;
 }
+
+  .img_item{
+      width: 100%;
+      margin-right: 20px;
+  }
