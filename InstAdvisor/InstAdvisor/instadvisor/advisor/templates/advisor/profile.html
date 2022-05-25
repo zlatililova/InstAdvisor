@@ -1,0 +1,42 @@
+{% extends "advisor/base.html" %}
+{% block content %}
+{% load static %}
+
+    <style type="text/css">
+        body {
+            background-color: #995D81;
+        }
+    </style>
+
+    <body>
+        <section class="bg-light">
+            <div class="container">
+                <!-- <div class="row"> -->
+                    <!-- <div class="col-lg-12 mb-4 mb-sm-5"> -->
+                        <div class="card card-style1 border-0">
+                            <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+                                <!-- <div class="row align-items-center"> -->
+                                    <div class="col-lg-6 mb-4 mb-lg-0">
+                                        <img class="profpic" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="...">
+                                    </div>
+                                    <!-- <div class="col-lg-6 px-xl-10"> -->
+                                        <ul class="list-unstyled mb-1-9">
+                                            <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Name:</span> John</li>
+                                            <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Username:</span> john.mark</li>
+                                            <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Email:</span> edith@mail.com</li>
+                                        </ul>
+                                    <!-- </div> -->
+                                    <!-- </div> -->
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                     <!-- </div> -->
+                <!-- </div> -->
+                <a href="{% url 'new post' %}">
+                    <button class="newpost">New Post</button>
+                </a>
+             </div>
+         </section>
+    </body>
+
+{% endblock content %}
