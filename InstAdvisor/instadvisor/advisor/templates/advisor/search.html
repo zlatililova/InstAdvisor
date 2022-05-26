@@ -19,9 +19,19 @@
 
         <div class="search">
           <i class="fa fa-search"></i>
-          <input type="text" class="form-control" style="font-family: 'Tapestry', cursive; font-size: medium;" placeholder="Search for location...">
-          <button class="btn btn-primary">Search</button>
+          <!--<input type="text" class="form-control" style="font-family: 'Tapestry', cursive; font-size: medium;" placeholder="Search for location...">
+          <button class="btn btn-primary">Search</button>-->
+          <form action="{% url 'searchbar' %}" method="get">
+            <input type="text" name="search" />
+            <button class="btn btn-primary" type="submit">Search</button>
+          </form>
         </div>
+
+        <script>
+          function myFunction(){
+
+          }
+        </script>
         
       </div>
       
