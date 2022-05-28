@@ -1,33 +1,43 @@
+import imp
+from inspect import ismethoddescriptor
 from turtle import title
 import graphene
+from graphene import relay
+from graphene_django.filter import DjangoFilterConnectionField
 from graphene_django import DjangoObjectType
 from .models import Posts
+from django.db.models import QuerySet
 
 class PostsType(DjangoObjectType):
     class Meta:
         model = Posts
         fields = ("id", "title", "execrpt")
+        filter_fields = {
+            'title': ['exact', 'icontains', 'istartswith'],
+            'id': ['exact'],
+            'execrpt': ['exact'],
+        }
+        interfaces = (relay.Node, )
 
 
 
 class Query(graphene.ObjectType):
 
-    all_posts = graphene.List(PostsType)
-    filter_posts = graphene.Field(PostsType, id = graphene.Int())
 
-    def resolve_all_posts(root, info):
-        return Posts.objects.all()
+
+    post = relay.Node.Field(PostsType)
+    all_posts = DjangoFilterConnectionField(PostsType)
+
+    #def resolve_all_posts(root, info, **kwargs):
+
+    def resolve_all_posts(root, info, search=None):
+        queryset = Posts.objects.all()
+        if search:
+            
+            queryset = queryset.filter(filter='icontains', search=search)
+
+        return queryset
     
-    # def filter_posts(root, info, title):
-    #     return Posts.objects.filter(title = title)
-    def filter_posts(root, info, title=None, **kwargs):
-        if title:
-            filter = (
-                Posts(title__icontains=title) |
-                Posts(description__icontains=title)
-            )
-            return Posts.objects.filter(filter)
-
-        return Posts.objects.all()
 
 schema =  graphene.Schema(query=Query)   
+

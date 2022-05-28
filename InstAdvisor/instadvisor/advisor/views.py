@@ -26,7 +26,7 @@ def searchbar(request):
     if request.method == "GET":
         search = request.GET.get('search')
         
-        posts = Query.filter_posts(root = Query, info=any, title = search)
+        posts = Query.resolve_all_posts(root = Query, info=any, search = search)
         
     return render(request, 'advisor/searchbar.html', {'posts': posts})
 
