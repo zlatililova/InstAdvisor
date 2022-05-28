@@ -31,8 +31,6 @@ class PostsFilter(django_filters.FilterSet):
 
 class Query(graphene.ObjectType):
 
-
-
     post = relay.Node.Field(PostsType)
     all_posts = DjangoFilterConnectionField(PostsType, filterset_class=PostsFilter)
     #def resolve_all_posts(root, info, **kwargs):
