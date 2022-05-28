@@ -6,6 +6,7 @@ import graphene
 from graphene import relay
 from graphene_django.filter import DjangoFilterConnectionField
 from graphene_django import DjangoObjectType
+from pkg_resources import require
 from .models import Posts
 import django_filters
 from django.db.models import QuerySet
@@ -29,6 +30,20 @@ class PostsFilter(django_filters.FilterSet):
         model = Posts
         fields = ['title', 'id', 'execrpt']
 
+class PostsMutation(graphene.Mutation):
+
+    class Arguments:
+        title = graphene.String(required=True)
+        execrpt = graphene.String()
+
+    posts = graphene.Field(PostsType)
+
+    @classmethod
+    def mutate(cls, root, info, title, execrpt):
+        posts = Posts(title=title, execrpt = execrpt)
+        posts.save()
+        return PostsMutation(posts=posts)
+
 class Query(graphene.ObjectType):
 
     post = relay.Node.Field(PostsType)
@@ -44,7 +59,11 @@ class Query(graphene.ObjectType):
 
     def resolve_all_posts(root, info):
         return Posts.objects.all()
-    
 
-schema =  graphene.Schema(query=Query)   
+class Mutation(graphene.ObjectType):
+    update_posts =  PostsMutation.Field()
+
+
+
+schema =  graphene.Schema(query=Query, mutation=Mutation)   
 
