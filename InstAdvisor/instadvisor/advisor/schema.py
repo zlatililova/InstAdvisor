@@ -32,15 +32,18 @@ class PostsFilter(django_filters.FilterSet):
 class Query(graphene.ObjectType):
 
     post = relay.Node.Field(PostsType)
-    all_posts = DjangoFilterConnectionField(PostsType, filterset_class=PostsFilter)
+    filter_posts = DjangoFilterConnectionField(PostsType, filterset_class=PostsFilter)
+    all_posts = graphene.List(PostsType)
     #def resolve_all_posts(root, info, **kwargs):
 
-    def resolve_all_posts(root, info, search=None):
+    def resolve_filter_posts(root, info, search=None):
         queryset = Posts.objects.all()
         if search: 
             queryset = queryset.filter(title__icontains=search)
-
         return queryset
+
+    def resolve_all_posts(root, info):
+        return Posts.objects.all()
     
 
 schema =  graphene.Schema(query=Query)   
