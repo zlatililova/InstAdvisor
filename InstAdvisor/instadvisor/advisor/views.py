@@ -20,7 +20,15 @@ def search(request):
     return render(request, 'advisor/search.html')
 
 def profile(request):
-    return render(request, 'advisor/profile.html')
+    if request.method == "UPDATE":
+        mute =PostsMutation()
+        title = request.UPDATE.get('title')
+        execrpt = request.UPDATE.get('execrpt')
+        id = request.UPDATE.get('id')
+        
+        posts = mute.mutate(root = Mutation, info = any, title=title, execrpt = execrpt, id = id)
+        
+    return render(request, 'advisor/details.html', {'posts': posts})
 
 def searchbar(request):
     if request.method == "GET":

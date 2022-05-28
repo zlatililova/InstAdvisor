@@ -1,15 +1,10 @@
-import imp
-from inspect import ismethoddescriptor
-from operator import contains
-from turtle import title
+from operator import pos
 import graphene
 from graphene import relay
 from graphene_django.filter import DjangoFilterConnectionField
 from graphene_django import DjangoObjectType
-from pkg_resources import require
 from .models import Posts
 import django_filters
-from django.db.models import QuerySet
 
 class PostsType(DjangoObjectType):
     class Meta:
@@ -35,6 +30,7 @@ class PostsMutation(graphene.Mutation):
     class Arguments:
         title = graphene.String(required=True)
         execrpt = graphene.String()
+        id = graphene.ID()
 
     posts = graphene.Field(PostsType)
 
@@ -43,6 +39,27 @@ class PostsMutation(graphene.Mutation):
         posts = Posts(title=title, execrpt = execrpt)
         posts.save()
         return PostsMutation(posts=posts)
+
+class PostMutationUpdate(graphene.Mutation):
+    class Arguments:
+        title = graphene.String(required=True)
+        execrpt = graphene.String()
+        id = graphene.ID()
+
+    posts = graphene.Field(PostsType)
+
+    @classmethod
+    def mutate(cls, root, info, title, execrpt, id):
+        posts = Posts.objects.get(id=id)
+        if title:   
+            posts.title = title
+        if execrpt:
+            posts.execrpt = execrpt
+
+        posts.save()
+        return PostsMutation(posts=posts)
+
+
 
 class Query(graphene.ObjectType):
 
@@ -61,7 +78,10 @@ class Query(graphene.ObjectType):
         return Posts.objects.all()
 
 class Mutation(graphene.ObjectType):
-    update_posts =  PostsMutation.Field()
+    create_posts =  PostsMutation.Field()
+    update_posts = PostMutationUpdate.Field()
+
+
 
 
 
