@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .schema import Query, schema
+from .schema import PostsMutation, Query, Mutation
 
 def posts(request):
     context= {
@@ -29,5 +29,15 @@ def searchbar(request):
         posts = Query.resolve_filter_posts(root = Query, info=any, search = search)
         
     return render(request, 'advisor/searchbar.html', {'posts': posts})
+
+def details(request):
+    if request.method == "POST":
+        mute =PostsMutation()
+        title = request.POST.get('title')
+        execrpt = request.POST.get('execrpt')
+        
+        posts = mute.mutate(root = Mutation, info = any, title=title, execrpt = execrpt)
+        
+    return render(request, 'advisor/details.html', {'posts': posts})
 
 # Create your views here.

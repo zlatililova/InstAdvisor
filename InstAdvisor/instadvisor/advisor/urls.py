@@ -15,7 +15,8 @@ urlpatterns = [
     path("newpost/", views.newpost, name = 'new post'),
     path("search/", views.search, name = 'search'),
     path("profile/", views.profile, name = 'profile'),
-    path("searchbar/", views.searchbar, name="searchbar")
+    path("searchbar/", views.searchbar, name="searchbar"),
+    path("details/", views.details, name="details"),
     ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 '''path('', views.home, name='home'),
