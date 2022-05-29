@@ -40,8 +40,6 @@ class PostsMutation(graphene.Mutation):
             posts = Posts(title=title, execrpt = execrpt)
             posts.save()
         elif flag == 'update':
-            print(id)
-            print('update flag!')
             try:
                 posts = Posts.objects.get(id=id)
             except Posts.DoesNotExist:
