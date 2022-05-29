@@ -35,30 +35,29 @@ class PostsMutation(graphene.Mutation):
     posts = graphene.Field(PostsType)
 
     @classmethod
-    def mutate(cls, root, info, title, execrpt):
-        posts = Posts(title=title, execrpt = execrpt)
-        posts.save()
+    def mutate(cls, root, info, title, execrpt, id, flag):
+        if flag == 'create':
+            posts = Posts(title=title, execrpt = execrpt)
+            posts.save()
+        elif flag == 'update':
+            print(id)
+            print('update flag!')
+            try:
+                posts = Posts.objects.get(id=id)
+            except Posts.DoesNotExist:
+                posts = None
+                return 
+            if title:
+                posts.title = title
+            if execrpt:
+                posts.execrpt = execrpt
+            posts.save()
+        else:
+            posts = Posts.objects.get(id=id)
+            posts.delete()
+
         return PostsMutation(posts=posts)
 
-class PostMutationUpdate(graphene.Mutation):
-    class Arguments:
-        title = graphene.String(required=True)
-        execrpt = graphene.String()
-        id = graphene.ID()
-
-    posts = graphene.Field(PostsType)
-
-    @classmethod
-    def mutate(cls, root, info, title, execrpt, id):
-        print("!!UPDATE!!")
-        posts = Posts.objects.get(id=id)
-        if title:   
-            posts.title = title
-        if execrpt:
-            posts.execrpt = execrpt
-
-        posts.save()
-        return PostsMutation(posts=posts)
 
 
 
@@ -80,7 +79,6 @@ class Query(graphene.ObjectType):
 
 class Mutation(graphene.ObjectType):
     create_posts =  PostsMutation.Field()
-    update_posts = PostMutationUpdate.Field()
 
 
 
