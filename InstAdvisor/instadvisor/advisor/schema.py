@@ -50,6 +50,7 @@ class PostMutationUpdate(graphene.Mutation):
 
     @classmethod
     def mutate(cls, root, info, title, execrpt, id):
+        print("!!UPDATE!!")
         posts = Posts.objects.get(id=id)
         if title:   
             posts.title = title

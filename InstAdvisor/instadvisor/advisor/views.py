@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .schema import PostsMutation, Query, Mutation
+from .schema import PostsMutation, Query, Mutation, PostMutationUpdate
 
 def posts(request):
     context= {
@@ -14,6 +14,14 @@ def home(request):
     return render(request, 'advisor/index.html')
 
 def newpost(request):
+    if request.method == "POST":
+        print("!!HERE!!")
+        title = request.POST.get('title')
+        execrpt = request.POST.get('execrpt')
+        PostMutationUpdate.mutate(root = Mutation, info = any, title=title, execrpt = execrpt)
+        
+        return render(request, 'advisor/details.html')
+
     return render(request, 'advisor/newpost.html')
 
 def search(request):
@@ -21,14 +29,16 @@ def search(request):
 
 def profile(request):
     if request.method == "UPDATE":
-        mute =PostsMutation()
+        global pp
+        mute =PostMutationUpdate()
         title = request.UPDATE.get('title')
         execrpt = request.UPDATE.get('execrpt')
         id = request.UPDATE.get('id')
         
-        posts = mute.mutate(root = Mutation, info = any, title=title, execrpt = execrpt, id = id)
+        pp = mute.mutate(root = Mutation, info = any, title=title, execrpt = execrpt, id = id)
         
-    return render(request, 'advisor/details.html', {'posts': posts})
+        return render(request, 'advisor/details.html', {'posts': pp})
+    return render(request, 'advisor/profile.html')
 
 def searchbar(request):
     if request.method == "GET":
@@ -39,13 +49,6 @@ def searchbar(request):
     return render(request, 'advisor/searchbar.html', {'posts': posts})
 
 def details(request):
-    if request.method == "POST":
-        mute =PostsMutation()
-        title = request.POST.get('title')
-        execrpt = request.POST.get('execrpt')
-        
-        posts = mute.mutate(root = Mutation, info = any, title=title, execrpt = execrpt)
-        
-    return render(request, 'advisor/details.html', {'posts': posts})
+    return render(request, 'advisor/details.html')
 
 # Create your views here.
