@@ -8,7 +8,7 @@
         }
     </style>
 
-<form action="{% url 'profile' %}" method="get">
+<form action="{% url 'profile' %}" >
     {% csrf_token %}
     <label>Title: </label>
     <input type="text" name="title" />
@@ -16,7 +16,8 @@
     <input type="text" name="id" />
     <label>Description: </label>
     <input type="text" name="execrpt" />
-    <button class="btn btn-primary" type="submit">Change</button>
+    <button class="btn btn-primary" type="submit" name="update" method = 'POST'>Change</button>
+    <button class="btn btn-primary" type="submit" name="delete" method="POST">Delete</button>
   </form>
 
 {% endblock content %}
