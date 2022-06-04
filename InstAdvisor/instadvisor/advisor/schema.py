@@ -5,7 +5,7 @@ from graphene_django.filter import DjangoFilterConnectionField
 from graphene_django import DjangoObjectType
 from .models import Posts
 import django_filters
-
+    
 class PostsType(DjangoObjectType):
     class Meta:
         model = Posts
@@ -57,8 +57,6 @@ class PostsMutation(graphene.Mutation):
         return PostsMutation(posts=posts)
 
 
-
-
 class Query(graphene.ObjectType):
 
     post = relay.Node.Field(PostsType)
@@ -77,8 +75,6 @@ class Query(graphene.ObjectType):
 
 class Mutation(graphene.ObjectType):
     create_posts =  PostsMutation.Field()
-
-
 
 
 
