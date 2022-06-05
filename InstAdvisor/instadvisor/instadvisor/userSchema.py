@@ -160,7 +160,6 @@ GRAPHQL_JWT = {
         "graphql_auth.mutations.PasswordChange",
         "graphql_auth.mutations.ArchiveAccount",
         "graphql_auth.mutations.DeleteAccount",
-        "graphql_auth.mutations.UpdateAccount",
         "graphql_auth.mutations.SendSecondaryEmailActivation",
         "graphql_auth.mutations.VerifySecondaryEmail",
         "graphql_auth.mutations.SwapEmails",
