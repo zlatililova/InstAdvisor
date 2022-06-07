@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from .userSchema import AuthMutation
 from .schema import PostsMutation, Query, Mutation
 
 
@@ -10,16 +12,26 @@ def posts(request):
 
 
 def about(request):
-    print(request.method)
-    if request.method == "get":
-        print("HERE!1!")
-        id = request.GET.get('id')
-        PostsMutation.mutate(root=Mutation, info=any,
-                             title=None, execrpt=None, flag='delete', id=id)
+    # print(request.method)
+    # if request.method == "get":
+    #     print("HERE!1!")
+    #     id = request.GET.get('id')
+    #     PostsMutation.mutate(root=Mutation, info=any,
+    #                          title=None, execrpt=None, flag='delete', id=id)
+    #     return render(request, 'advisor/aboutus.html')
+
+    # return render(request, 'advisor/aboutus.html')
+
+    if request.method == "POST":
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password1 = request.POST.get("password1")
+        password2 = request.POST.get("password2")
+
+        AuthMutation.register()
         return render(request, 'advisor/aboutus.html')
 
     return render(request, 'advisor/aboutus.html')
-    # return render(request, 'advisor/aboutus.html')
 
 
 def home(request):

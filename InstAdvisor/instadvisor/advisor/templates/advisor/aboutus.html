@@ -32,12 +32,19 @@
     <button class="btn btn-primary" type="submit">Post</button>
   </form>-->
 
-  <form action="{% url 'about us' %}" method="get">
+  <form action="{% url 'about us' %}" method="post">
     {% csrf_token %}
-    <label>ID: </label>
-    <input type="text" name="id" />
+    <label>Username </label>
+    <input type="text" name="username" />
+    <label>Email </label>
+    <input type="text" name="email" />
+    <label>Pass 1 </label>
+    <input type="text" name="password1" />
+    <label>Pass 2 </label>
+    <input type="text" name="password2" />
+
     <button class="btn btn-primary" type="submit">Post</button>
   </form>
-
+  
 
 {% endblock content %}
