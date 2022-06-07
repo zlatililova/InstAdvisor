@@ -10,7 +10,9 @@
     <div class="homeheading">
         <div class="headingsettings">InstAdvisor</div>
     </div>
-
-    <button class="getstartedbutt" onclick="alert('Coming soon!')">Get Started</button>
+    
+    <a href="{% url 'signinup' %}">
+        <button class="getstartedbutt" >Get Started</button>
+        </a>
 
 {% endblock content %}

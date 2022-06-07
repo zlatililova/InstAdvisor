@@ -121,11 +121,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
 
 
 # Default primary key field type
@@ -136,11 +135,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'advisor.ExtendUser'
 
 GRAPHENE = {
-    'SCHEMA' : 'advisor.schema.schema',
-    'MIDDLEWARE' : [
+    'SCHEMA': 'advisor.schema.schema',
+    'MIDDLEWARE': [
         'graphql_jwt.middleware.JSONWebTokenMiddleware',
     ],
-    
+
 }
 
 AUTHENTICATION_BACKENDS = [
@@ -149,7 +148,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 GRAPHQL_JWT = {
-"JWT_ALLOW_ANY_CLASSES": [
+    "JWT_ALLOW_ANY_CLASSES": [
         "graphql_auth.mutations.Register",
         "graphql_auth.mutations.VerifyAccount",
         "graphql_auth.ObtainJSONWebToken",

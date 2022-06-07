@@ -76,4 +76,8 @@ def searchbar(request):
 def details(request):
     return render(request, 'advisor/details.html')
 
+
+def signinup(request):
+    return render(request, 'advisor/signinup.html')
+
 # Create your views here.
