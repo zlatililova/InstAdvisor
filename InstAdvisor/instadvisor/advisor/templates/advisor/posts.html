@@ -4,12 +4,15 @@
 
 <style type="text/css">
   body {
-    background-color: #FFA69E;
+    background-color: #FFCEC7;
   }
   .postcard{
+    margin-left: 33%;
+    margin-top: 7%;
     height: 500px;
     width: 500px;
-    font-family: 'Tapestry', cursive;
+    font-family: 'Staatliches', cursive;
+    background-color: #FFA69E;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding-top: 1%;
 }
@@ -29,9 +32,9 @@
     height: 10%;
     width: 90%;  
     margin-left: 10%;
-    background-color: white;
-    color:#FFA69E;
-    font-size:120%;
+    background-color: rgba(255, 255, 255, 0.95);
+    color:black;
+    font-size:160%;
     padding-top: 1%;
 }
 
@@ -40,9 +43,9 @@
     width: 90%;  
     margin-top: -10.6%;
     padding-left: 2%;
-    background-color: black;
+    background-color: rgba(255, 255, 255, 0.95);
     font-size:150%;
-    color:#FFA69E;
+    color:black;
 }
 
 img {
@@ -53,11 +56,7 @@ img {
     z-index: -1;
    }
 
-   * {
-    
-    box-sizing: border-box;
-    
-  }
+
   .star-wrapper {
     margin-left: 7%;
     margin-top: 1%;
@@ -103,9 +102,11 @@ img {
 
 
 {% for post in posts %}
-<div class="postcard">
+<div class="postcard" style="box-sizing: border-box;">
   <div class="upper-text-card">
-    {{ post.title }}
+    <div style="margin-left: 5%;">
+     {{ post.title }}
+    </div>
   </div>
   <div class="postimg">
     
