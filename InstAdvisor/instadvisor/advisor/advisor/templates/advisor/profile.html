@@ -1,0 +1,23 @@
+{% extends "advisor/base.html" %}
+{% block content %}
+{% load static %}
+
+    <style type="text/css">
+        body {
+            background-color: #995D81;
+        }
+    </style>
+
+<form action="{% url 'profile' %}" >
+    {% csrf_token %}
+    <label>Title: </label>
+    <input type="text" name="title" />
+    <label>ID: </label>
+    <input type="text" name="id" />
+    <label>Description: </label>
+    <input type="text" name="execrpt" />
+    <button class="btn btn-primary" type="submit" name="update" method = 'POST'>Change</button>
+    <button class="btn btn-primary" type="submit" name="delete" method="POST">Delete</button>
+  </form>
+
+{% endblock content %}
