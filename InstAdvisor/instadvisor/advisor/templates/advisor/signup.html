@@ -1,0 +1,32 @@
+{% extends "advisor/base.html" %}
+{% block content %}
+{% load static %}
+
+    <style type="text/css">
+        body {
+            background-color: #995D81;
+        }
+    </style>
+
+    <body>
+        <button class="btn btn-primary, goback" onclick="window.history.back()">Go back!</button>
+
+        <h1 class="headings">Sign Up!</h1>
+
+        <form action="{% url 'signin' %}" method="post">
+            {% csrf_token %}
+            <label class="field">Username </label>
+            <input type="text" name="username" />
+            <br>
+            <label class="field">Password </label>
+            <input type="text" name="password1" />
+            <button class="btn btn-primary" type="submit" style="font-size: 200%;">Sign In</button>
+          </form>
+
+        <a href="{% url 'signin' %}">
+            <button class="btn btn-primary" style="font-size: 200%;" >Sign Up</button>
+        </a>
+
+</body>
+
+{% endblock content %}

@@ -7,7 +7,11 @@
             background-color: #FFE381;
         }
     </style>
-<!--
+
+<body>
+    
+<button class="btn btn-primary, goback" onclick="window.history.back()">Go back!</button>
+
 <div style="position: realtive;text-align: center; font-family: 'Tapestry';">
 <h1 class="headings" style=" font-size: 1.2cm;">The Team</h1>
 
@@ -23,28 +27,7 @@
     <img src="{% static 'advisor/Zlati.png' %}" style="width: 20%;" class="img_item">
     <img src="{% static 'advisor/Ivan.png' %}" style="width: 20%;" class="img_item">
 </div>
--->
-
-<!--<form action="{% url 'about us' %}" method="get">
-    {% csrf_token %}
-    <label>ID: </label>
-    <input type="text" name="id" />
-    <button class="btn btn-primary" type="submit">Post</button>
-  </form>-->
-
-  <form action="{% url 'about us' %}" method="post">
-    {% csrf_token %}
-    <label>Username </label>
-    <input type="text" name="username" />
-    <label>Email </label>
-    <input type="text" name="email" />
-    <label>Pass 1 </label>
-    <input type="text" name="password1" />
-    <label>Pass 2 </label>
-    <input type="text" name="password2" />
-
-    <button class="btn btn-primary" type="submit">Post</button>
-  </form>
+</body>
   
 
 {% endblock content %}

@@ -1,3 +1,34 @@
 
 
-<h1>Success!</h1>
+{% extends "advisor/base.html" %}
+{% block content %}
+{% load static %}
+
+    <style type="text/css">
+        body {
+            background-color: #FFCEC7;
+        }
+    </style>
+
+<body>
+
+    <button class="btn btn-primary, goback" onclick="window.history.back()">Go back!</button>
+
+    <h1 class="headings">Update or delete post</h1>
+
+    <form action="{% url 'profile' %}" >
+        {% csrf_token %}
+        <label class="field">Title: </label>
+        <input type="text" name="title" />
+        <br>
+        <label class="field">ID: </label>
+        <input type="text" name="id" />
+        <br>
+        <label class="field">Description: </label>
+        <input type="text" name="execrpt" />
+        <button class="btn btn-primary" type="submit" name="update" method = 'POST' style="font-size: 200%;">Change</button>
+        <button class="btn btn-primary" type="submit" name="delete" method="POST" style="font-size: 200%;">Delete</button>
+      </form>
+</body>
+
+{% endblock content %}

@@ -92,4 +92,14 @@ def details(request):
 def signinup(request):
     return render(request, 'advisor/signinup.html')
 
+def signin(request):
+    return render(request, 'advisor/signin.html')
+
+def signup(request):
+    return render(request, 'advisor/signup.html')
+
+def details(request):
+    return render(request, 'advisor/details.html')
+
+
 # Create your views here.

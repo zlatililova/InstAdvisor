@@ -23,6 +23,9 @@ urlpatterns = [
     path("searchbar/", views.searchbar, name="searchbar"),
     path("details/", views.details, name="details"),
     path("signinup/", views.signinup, name='signinup'),
+    path("signin/", views.signin, name='signin'),
+    path("signup/", views.signup, name='signup'),
+    path("details/", views.details, name='details'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 '''path('', views.home, name='home'),

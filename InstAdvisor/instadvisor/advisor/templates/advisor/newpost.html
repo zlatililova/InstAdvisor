@@ -8,13 +8,20 @@
     }
 </style>
 
-<form action="{% url 'new post' %}" method="post">
-    {% csrf_token %}
-    <label>Title: </label>
-    <input type="text" name="title" />
-    <label>Description: </label>
-    <input type="text" name="execrpt" />
-    <button class="btn btn-primary" type="submit">Post</button>
-  </form>
+<body>
+    <button class="btn btn-primary, goback" onclick="window.history.back()">Go back!</button>
+
+    <h1 class="headings">Create new post</h1>
+
+    <form action="{% url 'new post' %}" method="post">
+        {% csrf_token %}
+        <label class="field">Title: </label>
+        <input type="text" name="title" />
+        <br>
+        <label class="field">Description: </label>
+        <input type="text" name="execrpt" />
+        <button class="btn btn-primary" type="submit" style="font-size: 200%;">Post</button>
+      </form>
+</body>
 
 {% endblock content %}

@@ -52,7 +52,7 @@ body{
     position:absolute;
     text-align: center;
     margin: auto;
-    left: 82%;
+    left: 40%;
     margin-top: 30%;
     font-size: 200%;
     text-transform: uppercase;
@@ -94,7 +94,6 @@ body{
     text-indent: 25px;
     border: 2px solid #d6d4d4;
     margin-left: 5%;
-
    }
 
 
@@ -341,4 +340,28 @@ section {
     width: 100%;
     margin-left: 60%;
     margin-top: -40%;
+}
+
+.field{
+    margin-left: 40%;
+}
+
+.goback{
+    margin-left: -40%;
+    font-size: 200%;
+}
+
+.back-to-top{
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    margin-right: -40%;
+}
+
+.headings{
+    margin-top: -5%;
+    font-size: 1.2cm; 
+    position: realtive;
+    font-family: 'Tapestry';
+    text-align: center;
 }

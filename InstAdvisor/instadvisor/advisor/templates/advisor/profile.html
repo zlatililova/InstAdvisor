@@ -8,16 +8,12 @@
         }
     </style>
 
-<form action="{% url 'profile' %}" >
-    {% csrf_token %}
-    <label>Title: </label>
-    <input type="text" name="title" />
-    <label>ID: </label>
-    <input type="text" name="id" />
-    <label>Description: </label>
-    <input type="text" name="execrpt" />
-    <button class="btn btn-primary" type="submit" name="update" method = 'POST'>Change</button>
-    <button class="btn btn-primary" type="submit" name="delete" method="POST">Delete</button>
-  </form>
+<body>
+    <button class="btn btn-primary, goback" onclick="window.history.back()">Go back!</button>
+
+    <a href="{% url 'details' %}">
+        <button class="btn btn-primary" style="font-size: 200%;">Details</button>
+    </a> 
+</body>
 
 {% endblock content %}
