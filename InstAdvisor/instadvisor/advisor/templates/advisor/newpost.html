@@ -7,21 +7,20 @@
         background-color: #7284A8;
     }
 </style>
+<form method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <label>Title</label>
+    <input id="title" name="title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
-<body>
-    <button class="btn btn-primary, goback" onclick="window.history.back()">Go back!</button>
+    <label>Text</label>
+    <textarea id="title" name="text" type="textarea" rows="3" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></textarea>
 
-    <h1 class="headings">Create new post</h1>
-
-    <form action="{% url 'new post' %}" method="post">
-        {% csrf_token %}
-        <label class="field">Title: </label>
-        <input type="text" name="title" />
-        <br>
-        <label class="field">Description: </label>
-        <input type="text" name="execrpt" />
-        <button class="btn btn-primary" type="submit" style="font-size: 200%;">Post</button>
-      </form>
-</body>
+    <label>Image</label>
+    </br>
+    <small> Disclaimer: if the image is too big, there's a cahnce it won't be dysplayed</br></small>
+    <input id = "id_image" type = "file" name = "image">
+</div>
+    <button class="btn btn-primary" type="submit">Create post</button>
+</form>
 
 {% endblock content %}

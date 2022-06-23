@@ -104,16 +104,18 @@ img {
 
 {% for post in posts %}
 <div class="postcard" style="box-sizing: border-box;">
-  <div class="upper-text-card">
+  <div class="upper-text-card" style="color: black;">
     <div style="margin-left: 5%;">
      {{ post.title }}
     </div>
   </div>
   <div class="postimg">
-    
+    {% if post.image %}
+    <img src = "{{ post.image.url }}" alt="{{post.title}}" height = "750px" width="1000px" style="z-index: 1000;"/>
+    {% endif %} 
   </div>
   <div class="bottom-text-card">
-    {{ post.execrpt }}
+    {{ post.text }}
 
     <div class="star-wrapper">
       <a href="#" class="fas fa-star s1"></a>
