@@ -7,20 +7,24 @@
         background-color: #7284A8;
     }
 </style>
-<form method="post" enctype="multipart/form-data">
-    {%csrf_token%}
-    <label>Title</label>
-    <input id="title" name="title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
-    <label>Text</label>
-    <textarea id="title" name="text" type="textarea" rows="3" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></textarea>
-
-    <label>Image</label>
-    </br>
-    <small> Disclaimer: if the image is too big, there's a cahnce it won't be dysplayed</br></small>
-    <input id = "id_image" type = "file" name = "image">
-</div>
-    <button class="btn btn-primary" type="submit">Create post</button>
-</form>
-
+<body>
+    <h1 class="headings">Create new post</h1>
+    <form method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <label class="field">Title</label>
+        <input id="title" name="title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <br>
+        <br>
+        <label class="field">Text</label>
+        <textarea id="title" name="text" type="textarea" rows="3" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></textarea>
+        <br>
+        <label class="field">Image</label>
+        </br>
+        <small class="field" style="font-size:100%; font-family: 'Tapestry', cursive;"> Disclaimer: if the image is too big, there's a chance it won't be dysplayed!</br></small>
+        <input id = "id_image" type = "file" name = "image" class="field">
+    </div>
+        <button class="btn btn-primary" type="submit">Create post</button>
+    </form>
+</body>
 {% endblock content %}
