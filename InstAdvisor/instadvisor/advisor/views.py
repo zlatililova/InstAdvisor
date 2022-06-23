@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Posts
 from .Forms import UploadFileForm
 
@@ -53,8 +53,10 @@ def searchbar(request):
         return render(request, 'advisor/searchbar.html', {'posts': posts})
 
 
-def details(request):
-    return render(request, 'advisor/details.html')
+def detail(request, post_id):
+    post = get_object_or_404(Posts, pk=post_id)
+    context = {"post": post}
+    return render(request, "advisor/details.html", context)
 
 
 def signinup(request):
