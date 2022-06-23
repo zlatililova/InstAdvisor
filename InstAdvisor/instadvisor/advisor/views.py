@@ -47,8 +47,10 @@ def profile(request):
 
 
 def searchbar(request):
-
-    return render(request, 'advisor/searchbar.html', {'posts': posts})
+    if request.method == 'GET':
+        search = request.GET.get('search')
+        posts = Posts.objects.filter(title=search)
+        return render(request, 'advisor/searchbar.html', {'posts': posts})
 
 
 def details(request):
@@ -58,11 +60,14 @@ def details(request):
 def signinup(request):
     return render(request, 'advisor/signinup.html')
 
+
 def signin(request):
     return render(request, 'advisor/signin.html')
 
+
 def signup(request):
     return render(request, 'advisor/signup.html')
+
 
 def details(request):
     return render(request, 'advisor/details.html')
