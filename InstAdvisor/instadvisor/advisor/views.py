@@ -1,35 +1,15 @@
 from django.shortcuts import render
-
-from .userSchema import AuthMutation
-from .schema import PostsMutation, Query, Mutation
+from .models import Posts
+from .Forms import UploadFileForm
 
 
 def posts(request):
-    context = {
-        'posts': Query.resolve_all_posts(root=Query, info=any)
-    }
-    return render(request, 'advisor/posts.html', context)
+    posts = Posts.objects.all()
+    dictionary = {"posts": posts}
+    return render(request, "advisor/posts.html", dictionary)
 
 
 def about(request):
-    # print(request.method)
-    # if request.method == "get":
-    #     print("HERE!1!")
-    #     id = request.GET.get('id')
-    #     PostsMutation.mutate(root=Mutation, info=any,
-    #                          title=None, execrpt=None, flag='delete', id=id)
-    #     return render(request, 'advisor/aboutus.html')
-
-    # return render(request, 'advisor/aboutus.html')
-
-    if request.method == "POST":
-        username = request.POST.get("username")
-        email = request.POST.get("email")
-        password1 = request.POST.get("password1")
-        password2 = request.POST.get("password2")
-
-        AuthMutation.register()
-        return render(request, 'advisor/aboutus.html')
 
     return render(request, 'advisor/aboutus.html')
 
@@ -38,15 +18,23 @@ def home(request):
     return render(request, 'advisor/index.html')
 
 
+def handle_uploaded_file(f):
+    with open("media/" + f.name, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+
+
 def newpost(request):
     if request.method == "POST":
-        title = request.POST.get('title')
-        execrpt = request.POST.get('execrpt')
-        PostsMutation.mutate(root=Mutation, info=any, title=title,
-                             execrpt=execrpt, flag='create', id=None)
-        return render(request, 'advisor/newpost.html')
-
-    return render(request, 'advisor/newpost.html')
+        print(request.FILES)
+        object1 = Posts(title=request.POST.get("title"),
+                        text=request.POST.get("text"),
+                        image=request.FILES.get("image").name,
+                        )
+        object1.save()
+        handle_uploaded_file(request.FILES["image"])
+        return render(request, "advisor/posts.html")
+    return render(request, "advisor/newpost.html")
 
 
 def search(request):
@@ -55,33 +43,11 @@ def search(request):
 
 def profile(request):
 
-    # print(request.method)
-    # print(request)
-    # if "delete" in request.GET:
-    #     print("delete")
-    if request.method == "GET" and "delete" in request.GET:
-        print("into delete")
-        id = request.GET.get('id')
-        PostsMutation.mutate(root=Mutation, info=any,
-                             title=None, execrpt=None, id=id, flag='delete')
-        return render(request, 'advisor/profile.html')
-
-    elif request.method == "GET":  # and "update" in request:
-        print("into update")
-        title = request.GET.get('title')
-        execrpt = request.GET.get('execrpt')
-        id = request.GET.get('id')
-        PostsMutation.mutate(root=Mutation, info=any,
-                             title=title, execrpt=execrpt, id=id, flag='update')
-        return render(request, 'advisor/profile.html')
-
     return render(request, 'advisor/profile.html')
 
 
 def searchbar(request):
-    if request.method == "GET":
-        search = request.GET.get('search')
-        posts = Query.resolve_filter_posts(root=Query, info=any, search=search)
+
     return render(request, 'advisor/searchbar.html', {'posts': posts})
 
 

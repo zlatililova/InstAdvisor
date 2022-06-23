@@ -11,8 +11,6 @@ from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
-    path("graphql", GraphQLView.as_view(graphiql=True, schema=s)),
-    path("ugraphql", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=us))),
     path("posts/", views.posts, name='posts'),
     path('', views.home, name='home'),
     path("aboutus/", views.about, name='about us'),
