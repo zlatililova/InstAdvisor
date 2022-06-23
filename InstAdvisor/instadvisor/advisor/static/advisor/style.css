@@ -380,3 +380,13 @@ section {
     margin-top: 100px;
     margin-right: 200px;
 }
+
+.box {
+    padding-top: 10px;
+    text-align: center;
+    border: 5px solid #fefefe;
+    border-radius: 3px;
+    margin-left: 500px;
+    margin-top: 10px;
+    margin-right: 500px;
+}
