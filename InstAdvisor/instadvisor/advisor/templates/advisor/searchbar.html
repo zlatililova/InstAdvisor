@@ -1,12 +1,38 @@
+{% extends "advisor/base.html" %}
+{% block content %}
+{% load static %}
 {% if posts %}
 
-<h1>Search results found: </h1>
+<body style="background-color: #56E39F; ">
 
+<div style="padding-bottom: 50px;">   
+<h1 class="headings">Search results found: </h1>
 {%for post in posts %}
-<h2>{{post.title}}</h2>
+<div class="box">
+    <h2>
+    <a href = "/posts/{{ post.id }}">{{post.title}}</a>
+</h2>
+    <img src="{{post.image.url}}" height="250px" width="400px">
+</div>
+
+
 {% endfor %}
 
 {% else %}
-<h1> Nothing found!</h1>
+
+<body style="background-color: #56E39F; ">
+
+    <div style="padding-bottom: 50px;">   
+        <h1 class="headings" style="padding-top: 150px;"> Nothing found!</h1>
+        
+        <a href="{% url 'search'%}" style="align-items: center;">
+            <button class="btn btn-primary" style="font-size: 200%; "> Search again!</button>
+        </a>
+    </div>
+
 
 {%endif%}
+</div> 
+</body>
+
+{%endblock%}
