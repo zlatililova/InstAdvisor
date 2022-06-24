@@ -71,9 +71,11 @@ def profile(request):
 
 def searchbar(request):
     if request.method == 'GET':
+        print("searchbars")
         search = request.GET.get('search')
         posts = Posts.objects.filter(title=search)
         return render(request, 'advisor/searchbar.html', {'posts': posts})
+    return render(request, 'advisor/searchbar.html', {'posts': posts})
 
 
 def detail(request, post_id):

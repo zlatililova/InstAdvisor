@@ -13,20 +13,36 @@
 <body>
 
     <h1 class="headings">Update or delete post</h1>
-
+    <div class = "content-section" style="padding: 100px;">
     <form action="{% url 'profile' %}" >
         {% csrf_token %}
-        <label class="field">Title: </label>
-        <input type="text" name="title" />
-        <br>
-        <label class="field">ID: </label>
-        <input type="text" name="id" />
-        <br>
-        <label class="field">Description: </label>
-        <input type="text" name="execrpt" />
-        <button class="btn btn-primary" type="submit" name="update" method = 'POST' style="font-size: 200%;">Change</button>
-        <button class="btn btn-primary" type="submit" name="delete" method="POST" style="font-size: 200%;">Delete</button>
+        <div>
+            <h4 class="headings" style="margin-top: -70px;">Change post </h4>
+            <div style="padding: 0px; ">
+                <img src = "{{ post.image.url }}" height = "450px" width="250px" style="display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 30%;
+                border-color: beige;
+                border-radius: 1cm;">
+            </div>
+        
+        <label class="headings">Title: {{post.title}}</label> 
+        <br/>
+        <label style="font-size: 150%;">Change title: </label>
+        <input type="text" name="title" class="search" style="margin-top: 0px; font-size: 150%;"/>
+        </div>
+        <br/>
+        <div>
+        <label class="headings">Description: {{post.text}}</label>
+        <br/>
+        <label style="font-size: 150%;">Change Description: </label>
+        <input type="text" name="text" class="search" style="margin-top: 0px; font-size: 150%;"/>
+        </div>
+        <button class="btn btn-primary" type="submit" name="update" method = 'POST' style="font-size: 200%; color: black">Change</button>
+        <button class="btn btn-primary" type="submit" name="delete" method="POST" style="font-size: 200%; color: red;" >Delete</button>
       </form>
+    </div>
 </body>
 
 {% endblock content %}

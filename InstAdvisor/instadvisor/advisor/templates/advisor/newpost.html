@@ -10,6 +10,7 @@
 
 <body>
     <h1 class="headings">Create new post</h1>
+    <div class="content-section" style= "padding-top: 10px; align-content: center;">
     <form method="post" enctype="multipart/form-data">
         {%csrf_token%}
         <label class="headings" style="padding-left: 450px;">Title: </label>
@@ -18,13 +19,17 @@
         <br>
         <label class="headings" style="padding-left: 450px;">Text: </label>
         <textarea id="title" name="text" type="textarea" rows="3" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></textarea>
-        <br>
+        <br/>
+        <div>
         <label class="headings" style="padding-left: 450px;">Image: </label>
-        </br>
-        <small class="field" style="font-size:100%; font-family: 'Tapestry', cursive;"> Disclaimer: if the image is too big, there's a chance it won't be dysplayed!</br></small>
         <input id = "id_image" type = "file" name = "image" class="field">
+        
     </div>
+    <br/>
+        <small class="field" style="font-size:100%; font-family: 'Tapestry', cursive;"> Disclaimer: if the image is too big, there's a chance it won't be dysplayed!</br></small>
+    
         <button class="btn btn-primary" type="submit">Create post</button>
     </form>
+</div>
 </body>
 {% endblock content %}
