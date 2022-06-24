@@ -1,0 +1,45 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Mutation {
+  createPosts(id: ID, text: String, title: String!): PostsMutation
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type PostsMutation {
+  posts: PostsType
+}
+
+type PostsType implements Node {
+  id: ID!
+  title: String!
+  text: String!
+}
+
+type PostsTypeConnection {
+  pageInfo: PageInfo!
+  edges: [PostsTypeEdge]!
+}
+
+type PostsTypeEdge {
+  node: PostsType
+  cursor: String!
+}
+
+type Query {
+  post(id: ID!): PostsType
+  filterPosts(offset: Int, before: String, after: String, first: Int, last: Int, title: String, id: ID, text: String): PostsTypeConnection
+  allPosts: [PostsType]
+}

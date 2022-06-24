@@ -46,6 +46,7 @@ def search(request):
     return render(request, 'advisor/search.html')
 
 
+@login_required
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
@@ -56,15 +57,15 @@ def profile(request):
             u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been updated!')
-            return redirect('profile')
+            return redirect('adivsor/profile.html')
 
     else:
         u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileUpdateForm(instance=request.user.profile)
+        # p_form = ProfileUpdateForm(instance=request.user.profile)
 
     context = {
         'u_form': u_form,
-        'p_form': p_form
+        # 'p_form': p_form
     }
     return render(request, 'advisor/profile.html')
 
@@ -96,14 +97,10 @@ def signup(request):
             username = form.cleaned_data.get('username')
             messages.success(
                 request, f'Your account has been created! You are now able to log in!')
-            return redirect('login')
+            return redirect('signin')
     else:
         form = UserCreationForm()
     return render(request, 'advisor/signup.html', {'form': form})
-
-
-def details(request):
-    return render(request, 'advisor/details.html')
 
 
 # Create your views here.
