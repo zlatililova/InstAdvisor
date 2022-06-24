@@ -23,7 +23,7 @@ urlpatterns = [
     path("signinup/", views.signinup, name='signinup'),
     path("signin/", views.signin, name='signin'),
     path("signup/", views.signup, name='signup'),
-    path("details/", views.details, name='details'),
+    path("posts/<int:post_id>/", views.detail, name='detail'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 '''path('', views.home, name='home'),
