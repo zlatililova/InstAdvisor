@@ -12,14 +12,14 @@
     <h1 class="headings">Create new post</h1>
     <form method="post" enctype="multipart/form-data">
         {%csrf_token%}
-        <label class="field">Title</label>
-        <input id="title" name="title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <label class="headings" style="padding-left: 450px;">Title: </label>
+        <input name="title" type="text" class="search">
         <br>
         <br>
-        <label class="field">Text</label>
+        <label class="headings" style="padding-left: 450px;">Text: </label>
         <textarea id="title" name="text" type="textarea" rows="3" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></textarea>
         <br>
-        <label class="field">Image</label>
+        <label class="headings" style="padding-left: 450px;">Image: </label>
         </br>
         <small class="field" style="font-size:100%; font-family: 'Tapestry', cursive;"> Disclaimer: if the image is too big, there's a chance it won't be dysplayed!</br></small>
         <input id = "id_image" type = "file" name = "image" class="field">

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django_filters',
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
     'graphql_auth',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -131,7 +132,6 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'advisor.ExtendUser'
 
 GRAPHENE = {
     'SCHEMA': 'advisor.schema.schema',

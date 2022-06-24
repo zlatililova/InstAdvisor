@@ -1,6 +1,7 @@
 {% extends "advisor/base.html" %}
 {% block content %}
 {% load static %}
+{% load crispy_forms_tags %}
 
     <style type="text/css">
         body {
@@ -10,27 +11,25 @@
 
     <body>
 
-        <h1 class="headings">Sign in!</h1>
+        <div class ="content-section" style="padding-top: 20px; padding-bottom: 50px; margin-bottom: 50px;">
+            <form method="POST">
+              {% csrf_token %}
+              <fieldset style="font-family: 'Staatliches', cursive; margin: 50px; margin-top: 0px; margin-bottom: 0px;" class = "search">
+                <legend style="font-size: 200%;">Log in</legend>
+                {{ form|crispy }}
+              </fieldset>
+              <div>
+                <button class="btn btn-primary" type="submit">Log in</button>
+              </div>
+              </form>
+              <div class="border-top pt-3" style="padding-left: 430px;">
+                <small class="headings" style="font-size: 120%; ">
+                  Need an Account? <a class="ml-2" href="{% url 'signup' %}">Sign Up Now</a>
+                </small>
+              </div>
+          </div>
 
-        <form action="{% url 'signin' %}" method="post">
-            {% csrf_token %}
-            <label class="field">Username </label>
-            <input type="text" name="username" />
-            <br>
-            <label class="field">Email </label>
-            <input type="text" name="email" />
-            <br>
-            <label class="field">Pass 1 </label>
-            <input type="text" name="password1" />
-            <br>
-            <label class="field">Pass 2 </label>
-            <input type="text" name="password2" />
-            <button class="btn btn-primary" type="submit" style="font-size: 200%;">Sign In</button>
-          </form>
 
-          <a href="{% url 'signup' %}">
-            <button class="btn btn-primary" style="font-size: 200%;">Sign Up</button>
-        </a>
 
     </body>
 
